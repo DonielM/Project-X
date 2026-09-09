@@ -1,0 +1,343 @@
+:root {
+  --ink: #0f1b3d;
+  --ink-2: #16265a;
+  --ink-3: #0a1229;
+  --bone: #f3eee2;
+  --bone-dim: #b8b1a0;
+  --fluo: #ff3c8c;
+  --sun: #ffc94a;
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --seam: 2px;
+  --radius: 4px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-ui);
+  line-height: 1.55;
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(
+      90ch 60ch at 12% -10%,
+      rgba(255, 60, 140, 0.18),
+      transparent 62%
+    ),
+    radial-gradient(
+      70ch 50ch at 100% 8%,
+      rgba(255, 201, 74, 0.13),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--ink) 0%, var(--ink-3) 100%);
+  background-attachment: fixed;
+  color: var(--bone);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* paper grain over everything */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.shell {
+  max-width: 940px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+#app {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+/* ---------- masthead ---------- */
+.site-header {
+  text-align: center;
+  margin-bottom: clamp(24px, 4vw, 40px);
+}
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.wordmark {
+  font-size: clamp(30px, 8.4vw, 50px);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: -0.035em;
+  font-variation-settings: "wdth" 90;
+  margin-bottom: 0.25em;
+}
+.wordmark span {
+  display: inline-block;
+}
+.wordmark span:nth-child(2) {
+  padding-left: 0.5em;
+  color: var(--sun);
+}
+.wordmark span:nth-child(3) {
+  padding-left: 0.5em;
+  color: var(--fluo);
+}
+
+.premise {
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.premise {
+  max-width: 600px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* =========================
+   MAIN SHELL
+   ========================= */
+
+.shell {
+  width: 100%;
+}
+
+main {
+  display: grid;
+  gap: 25px;
+}
+
+/* =========================
+   SECTIONS / CARDS
+   ========================= */
+
+main section {
+  background: rgba(18, 26, 46, 0.9);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 10px 20px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+main section h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+/* =========================
+   SCORE
+   ========================= */
+
+dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+dl > div {
+  background: var(--panel-light);
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+dd {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+#player-score {
+  color: var(--accent);
+}
+
+#computer-score {
+  color: var(--scissors);
+}
+
+/* =========================
+   CHOICE BUTTONS
+   ========================= */
+
+#choice-heading {
+  text-align: center;
+}
+
+#choice-heading + div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 14px;
+  padding: 14px 20px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.1);
+}
+
+button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+/* Individual choices */
+
+#rock-button {
+  background: white;
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+  color: var(--ink-3);
+}
+
+#paper-button {
+  background: var(--sun);
+  box-shadow: 0 8px 25px rgba(255, 201, 74, 0.25);
+  color: var(--ink-2);
+}
+
+#scissors-button {
+  background: var(--fluo);
+  box-shadow: 0 8px 25px rgba(255, 60, 140, 0.25);
+}
+
+/* =========================
+   ROUND RESULT
+   ========================= */
+
+[aria-labelledby="result-heading"] {
+  text-align: center;
+}
+
+#round-result {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+#player-choice,
+#computer-choice {
+  color: var(--muted);
+  background: var(--panel-light);
+  padding: 13px 16px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* =========================
+   RESET BUTTON
+   ========================= */
+
+#reset-button {
+  text-transform: capitalize;
+  width: 100%;
+  float: none;
+  display: inline-block;
+  border: 1px solid var(--border);
+  color: var(--ink-3);
+}
+
+#reset-button:hover {
+  color: white;
+  background: var(--panel);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+@media (max-width: 650px) {
+  body {
+    padding: 25px 15px;
+  }
+
+  .wordmark {
+    letter-spacing: -1px;
+  }
+
+  .wordmark span {
+    display: block;
+    margin: 0;
+  }
+
+  main section {
+    border-radius: 16px;
+  }
+
+  #choice-heading + div {
+    grid-template-columns: 1fr;
+  }
+
+  dl {
+    gap: 10px;
+  }
+
+  dd {
+    font-size: 2.4rem;
+  }
+
+  button {
+    padding: 16px;
+  }
+}
+
+/* =========================
+   SMALL SCREEN
+   ========================= */
+
+@media (max-width: 400px) {
+  .premise {
+    font-size: 0.9rem;
+  }
+  #round-result {
+    font-size: 1.4rem;
+  }
+}
