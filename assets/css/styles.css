@@ -2,7 +2,6 @@
   --ink: #0f1b3d;
   --ink-2: #16265a;
   --ink-3: #0a1229;
-  --bone: #f3eee2;
   --bone-dim: #b8b1a0;
   --fluo: #ff3c8c;
   --sun: #ffc94a;
@@ -10,8 +9,28 @@
   --seam: 2px;
   --radius: 4px;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --radius-pill: 20px;
 }
 
+html[data-theme="dark"] {
+  --background: #0f172a;
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #f8fafc;
+  --bone: #f3eee2;
+  --panel-light: rgba(18, 26, 46, 0.75);
+  --panel: rgba(18, 26, 46, 0.9);
+  --text-secondary: #f1f5f9;
+}
+
+html[data-theme="light"] {
+  --background: #f1f5f9;
+  --border: rgba(0, 0, 0, 0.1);
+  --text: #0f172a;
+  --bone: #0f172a;
+  --panel-light: rgba(255, 255, 255, 0.75);
+  --panel: rgba(255, 255, 255, 0.9);
+  --text-secondary: #0f172a;
+}
 * {
   box-sizing: border-box;
 }
@@ -25,33 +44,10 @@ body {
   font-family: var(--font-ui);
   line-height: 1.55;
   background-color: var(--ink);
-  background-image:
-    radial-gradient(
-      90ch 60ch at 12% -10%,
-      rgba(255, 60, 140, 0.18),
-      transparent 62%
-    ),
-    radial-gradient(
-      70ch 50ch at 100% 8%,
-      rgba(255, 201, 74, 0.13),
-      transparent 60%
-    ),
-    linear-gradient(180deg, var(--ink) 0%, var(--ink-3) 100%);
-  background-attachment: fixed;
+  background: var(--background);
   color: var(--bone);
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
-}
-
-/* paper grain over everything */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.055;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .shell {
@@ -68,7 +64,7 @@ body::after {
 /* ---------- masthead ---------- */
 .site-header {
   text-align: center;
-  margin-bottom: clamp(24px, 4vw, 40px);
+  margin-bottom: clamp(24px, 4vw, 30px);
 }
 .masthead {
   display: flex;
@@ -88,6 +84,7 @@ body::after {
 }
 .wordmark span {
   display: inline-block;
+  color: var(--text-secondary);
 }
 .wordmark span:nth-child(2) {
   padding-left: 0.5em;
@@ -99,16 +96,10 @@ body::after {
 }
 
 .premise {
-  margin: 16px 0 0;
-  font-size: 16px;
-  line-height: 1.45;
   text-align: center;
-}
-
-.premise {
   max-width: 600px;
   margin: auto;
-  color: var(--muted);
+  color: var(--text);
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -131,7 +122,7 @@ main {
    ========================= */
 
 main section {
-  background: rgba(18, 26, 46, 0.9);
+  background: var(--background);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 10px 20px;
@@ -148,6 +139,44 @@ main section h2 {
   color: var(--muted);
 }
 
+.nav-toggles {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.toggle-btn {
+  background: var(--bg-panel-alt);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.toggle-btn[aria-pressed="true"] {
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+}
+
+/* ========================================= THEME BUTTON ========================================= */
+.theme-toggle {
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface-light);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.3s ease;
+}
+.theme-toggle:hover {
+  transform: rotate(15deg) scale(1.05);
+}
+
 /* =========================
    SCORE
    ========================= */
@@ -159,10 +188,8 @@ dl {
 }
 
 dl > div {
-  background: var(--panel-light);
   border-radius: 16px;
   text-align: center;
-  border: 1px solid var(--border);
 }
 
 dt {
@@ -231,9 +258,8 @@ button:focus-visible {
 /* Individual choices */
 
 #rock-button {
-  background: white;
-  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
-  color: var(--ink-3);
+  background: var(--ink-2);
+  box-shadow: 0 8px 25px rgba(22, 38, 90, 0.25);
 }
 
 #paper-button {
