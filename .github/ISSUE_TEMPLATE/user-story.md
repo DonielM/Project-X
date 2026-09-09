@@ -1,8 +1,8 @@
-# User Stories — RPSLS Arena
+# User Stories — Five Throws
 
 ## Core gameplay
 
-- As a player, I want to choose from five signs (Rock, Paper, Scissors, Spock) instead of three, so that matches have more strategic depth than classic RPS.
+- As a player, I want to choose from five signs (Rock, Paper, Scissors, Lizard, Spock) instead of three, so that matches have more strategic depth than classic RPS.
 - As a player, I want to play a best-of-3, 5, or 7 match, so that one lucky or unlucky round doesn't decide the whole outcome.
 - As a player, I want a live scoreboard and round-by-round progress pips, so that I always know how close the match is to ending.
 - As a player, I want clear win/lose/draw feedback explaining which sign beat which, so that I understand the result, not just see it.
@@ -13,6 +13,11 @@
 - As a player, I want the AI to genuinely adapt to my play patterns on Medium and Hard, so that repeating the same sign has a real cost instead of the AI just being relabeled random chance.
 - As a player, I want to see why the AI threw what it did after each round, so that I can learn from its strategy instead of treating it as a black box.
 - As a player facing Hard difficulty, I want the AI to occasionally bluff instead of always countering, so that I can't exploit a 100%-predictable counter pattern.
+
+## Local two-player mode
+
+- As two players sharing one device, we want a pass-and-play mode, so that we can compete against each other instead of only the computer.
+- As player two, I want my sign kept hidden from player one until I've chosen mine, so that the round stays fair and neither of us can react to the other's pick.
 
 ## Timing and pacing
 
