@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets\css\styles.css">
-    <title>Rock Paper Scissors</title>
-</head>
-<body>
-    <header>
-        <h1>Rock Paper Scissors</h1>
-        <p>Choose a move and play against the computer.</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RPSLS Arena — Rock, Paper, Scissors</title>
+        <link rel="stylesheet" href="assets/css/styles.css">
+    </head>
+  <body>
+  <div id="app">
+
+    <header class="site-header">
+      <h1 class="wordmark">
+        <span>Rock</span><span>Paper</span><span>Scissors</span>
+        </h1>
+        <p class="premise">
+        Three shapes, one loop, no way to outsmart it. First to five takes
+        the match.
+        </p>
     </header>
 
-    <main>
+    <div class="shell">
+      <main>
         <section aria-labelledby="score-heading">
             <h2 id="score-heading">Score</h2>
             <dl>
@@ -47,5 +55,7 @@
     </main>
 
     <script src="assets\JavaScript\script.js"></script>
-</body>
+
+    </div>
+  </body>
 </html>
