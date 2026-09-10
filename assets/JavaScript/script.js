@@ -59,15 +59,15 @@ loadTheme();
 //Game Logic below
 
 //Query selecting the buttons so i can use them to make the game run
-const rockButton = document.querySelector(".rock-button");
-const paperButton = document.querySelector(".paper-button");
-const scissorsButton = document.querySelector(".scissors-button");
+const rockButton = document.getElementById("rock-button");
+const paperButton = document.getElementById("paper-button");
+const scissorsButton = document.getElementById("scissors-button");
 
 
 //Query selecting the result display so i can change it when the game starts
-const resultDisplay = document.querySelector(".round-result");
-const playerDisplay = document.querySelector(".player-choice");
-const computerDisplay = document.querySelector(".computer-choice");
+const resultDisplay = document.getElementById("round-result");
+const playerDisplay = document.getElementById("player-choice");
+const computerDisplay = document.getElementById("computer-choice");
 
 
 // Added event listener on the move buttons so when clicked it picks the corresponding move.
@@ -121,3 +121,4 @@ function displayResult(playerPick, computerPick, result) {
   playerDisplay.innerHTML = `You picked: ${playerPick}`;
   computerDisplay.innerHTML = `Computer picked: ${computerPick}`;
 }
+
