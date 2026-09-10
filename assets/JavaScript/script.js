@@ -56,6 +56,70 @@ themeToggle.addEventListener("click", toggleTheme);
 //START GAME
 loadTheme();
 
+// SOUND ON / OFF
+const soundToggle = document.getElementById("sound-toggle");
+
+// Sound files are stored in assets/audio/
+const playerWinSound = new Audio("assets/audio/player-win.mp3");
+const computerWinSound = new Audio("assets/audio/computer-win.mp3");
+const drawSound = new Audio("assets/audio/draw.mp3");
+const matchWinSound = new Audio("assets/audio/match-win.mp3");
+
+let soundEnabled = true;
+
+// Update the button text
+function updateSoundButton() {
+  if (soundEnabled) {
+    soundToggle.textContent = "🔊 Sound On";
+    soundToggle.setAttribute("aria-label", "Mute sound effects");
+  } else {
+    soundToggle.textContent = "🔇 Sound Off";
+    soundToggle.setAttribute("aria-label", "Enable sound effects");
+  }
+}
+
+// Turn sound on/off
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+
+  // Remember the setting
+  localStorage.setItem("rps-sound", soundEnabled);
+
+  updateSoundButton();
+}
+
+// Load saved setting
+function loadSoundSetting() {
+  const savedSound = localStorage.getItem("rps-sound");
+
+  if (savedSound !== null) {
+    soundEnabled = savedSound === "true";
+  }
+
+  updateSoundButton();
+}
+
+// Button click
+if (soundToggle) {
+  soundToggle.addEventListener("click", toggleSound);
+}
+
+// Start with saved setting
+loadSoundSetting();
+
+// PLAY SOUND
+function playSound(sound) {
+  if (!soundEnabled) {
+    return;
+  }
+
+  sound.currentTime = 0;
+
+  sound.play().catch(() => {
+    console.log("Audio is unavailable.");
+  });
+}
+
 //Game Logic below
 
 //retrieve the score from local storage if its available if not it sets the score to zero
@@ -70,7 +134,6 @@ const rockButton = document.getElementById("rock-button");
 const paperButton = document.getElementById("paper-button");
 const scissorsButton = document.getElementById("scissors-button");
 const resetButton = document.getElementById("reset-button");
-
 
 //Query selecting the result display so i can change it when the game starts
 const resultDisplay = document.getElementById("round-result");
