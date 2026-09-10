@@ -122,3 +122,7 @@ function displayResult(playerPick, computerPick, result) {
   computerDisplay.innerHTML = `Computer picked: ${computerPick}`;
 }
 
+function empty(params) {
+  
+}
+
