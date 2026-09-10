@@ -81,7 +81,7 @@ paperButton.addEventListener("click", () => {
 scissorsButton.addEventListener("click", () => {
   playerMove("Scissors");
 });
-
+//random comment
 
 // The following function picks a random number between 0-1 and gives the computer a coressponding move
 // I use return here so i dont have to write else if and else making the code shorter
