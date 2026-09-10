@@ -123,6 +123,7 @@ function displayResult(playerPick, computerPick, result) {
 }
 
 function empty(params) {
-  
+  a = 5
+  console.log(a)
 }
 
