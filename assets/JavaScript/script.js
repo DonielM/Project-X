@@ -143,7 +143,6 @@ const playerScore = document.getElementById("player-score");
 const computerScore = document.getElementById("computer-score");
 const tiesScore = document.getElementById("ties-score");
 
-
 //Display the scores by default so it shows previously saved scores if there is one
 displayScore();
 
@@ -159,7 +158,6 @@ scissorsButton.addEventListener("click", () => {
   playerMove("Scissors");
 });
 
-
 //The following function picks a random number between 0-1 and gives the computer a coressponding move
 //I use return here so i dont have to write else if and else making the code shorter
 function computersMove() {
@@ -170,7 +168,6 @@ function computersMove() {
   return "Scissors";
 }
 
-
 //This functions lets the player pick which move they want and compares it to the computers move to determine the result
 function playerMove(playerPick) {
   const computerPick = computersMove();
@@ -178,6 +175,7 @@ function playerMove(playerPick) {
 
   if (playerPick === computerPick) {
     result = "You, tie";
+    playSound(drawSound);
     score.ties++;
   } else if (
     (playerPick === "Scissors" && computerPick === "Paper") ||
@@ -185,13 +183,15 @@ function playerMove(playerPick) {
     (playerPick === "Rock" && computerPick === "Scissors")
   ) {
     result = "You, win!";
+    playSound(playerWinSound);
     score.wins++;
   } else {
     result = "You, lose";
+    playSound(computerWinSound);
     score.losses++;
   }
-  
-  displayScore()
+
+  displayScore();
   displayResult(playerPick, computerPick, result);
   console.log(result);
 }
@@ -203,18 +203,18 @@ function displayResult(playerPick, computerPick, result) {
   computerDisplay.innerHTML = `Computer picked: ${computerPick}`;
 }
 
-//This displays the score count in the score section 
+//This displays the score count in the score section
 //also saves the scores in local storage
 function displayScore() {
-  playerScore.innerHTML=`${score.wins}`
-  computerScore.innerHTML=`${score.losses}`
-  tiesScore.innerHTML=`${score.ties}`
+  playerScore.innerHTML = `${score.wins}`;
+  computerScore.innerHTML = `${score.losses}`;
+  tiesScore.innerHTML = `${score.ties}`;
 
   localStorage.setItem("score", JSON.stringify(score));
 }
 //Added event listener on the reset button so when clicked it resets the score
 resetButton.addEventListener("click", () => {
- resetScore()
+  resetScore();
 });
 
 //Resets the scores and clears the result and picks displayed
@@ -227,6 +227,3 @@ function resetScore() {
   playerDisplay.innerHTML = "Your choice: Not selected";
   computerDisplay.innerHTML = "Computer choice: Not selected";
 }
-
-
-
