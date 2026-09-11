@@ -183,13 +183,14 @@ main section h2 {
 
 dl {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
 dl > div {
   border-radius: 16px;
   text-align: center;
+  min-width: 0;
 }
 
 dt {
@@ -202,6 +203,7 @@ dt {
 dd {
   font-size: 3rem;
   font-weight: 900;
+  margin: 0;
 }
 
 #player-score {
@@ -365,5 +367,8 @@ button:focus-visible {
   }
   #round-result {
     font-size: 1.4rem;
+  }
+  dl {
+    grid-template-columns: 1fr;
   }
 }
